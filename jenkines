@@ -29,7 +29,9 @@ pipeline {
                   -Dsonar.projectname=Sonartest ^
                   -Dsonar.sources=. ^
                   -Dsonar.host.url=http://localhost:9000 ^
-                  -Dsonar.token=sqp_74a7cf2feffe1bdaee3c01686c185d676ad955b2
+                  -Dsonar.token=sqp_c92c3d000185242de59d759a14629a9412362866
+
+
                 '''
 
             }
