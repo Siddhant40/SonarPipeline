@@ -26,7 +26,7 @@ pipeline {
                 set PATH=%PYTHON_PATH%;%PATH%^
                sonar-scanner ^
                   -Dsonar.projectKey=Sonartest ^
-                  -Dsonar.projectname=Sonartest ^
+                  -Dsonar.projectname=Analyze "Sonartest" ^
                   -Dsonar.sources=. ^
                   -Dsonar.host.url=http://localhost:9000 ^
                   -Dsonar.token=sqp_c92c3d000185242de59d759a14629a9412362866
