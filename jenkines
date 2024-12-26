@@ -25,15 +25,12 @@ pipeline {
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%^
                sonar-scanner ^
-                  -Dsonar.projectKey=Sonartest ^
-                  -Dsonar.projectname=Analyze "Sonartest" ^
+                  -Dsonar.projectKey=pipe ^
+                  -Dsonar.projectname=pipe ^
                   -Dsonar.sources=. ^
                   -Dsonar.host.url=http://localhost:9000 ^
-                  -Dsonar.token=sqp_c92c3d000185242de59d759a14629a9412362866
-
-
+                  -Dsonar.token=%SONAR_TOKEN%
                 '''
-
             }
         }
     }
