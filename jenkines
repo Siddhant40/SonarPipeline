@@ -24,8 +24,7 @@ pipeline {
             steps {
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%^
-                sonar-scanner 
-                  -Dsonar.projectKey=Sonartest ^
+                sonar-scanner -Dsonar.projectKey=Sonartest ^
                   -Dsonar.projectname=Sonartest ^
                   -Dsonar.sources=. ^
                   -Dsonar.host.url=http://localhost:9000 ^
