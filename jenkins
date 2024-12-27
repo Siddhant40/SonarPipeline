@@ -31,8 +31,7 @@ pipeline {
                 
                 // Use the full path for sonar-scanner.bat
                 bat '''
-                set PATH=%PYTHON_PATH%;%PATH%
-             
+                set PATH=%PYTHON_PATH%;%PATH%^
                   -Dsonar.projectKey=pipe ^
                   -Dsonar.projectname=pipe ^
                   -Dsonar.sources=. ^
