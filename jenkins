@@ -1,13 +1,45 @@
-node{
-  stage('Build'){
-    echo "Building"
-  }
-  stage('Test'){
-    echo "Testing"
-  }
-    if(currentBuild.currentResult=='SUCCESS'){
-    echo "Looks good"
-  }else{
-    echo "Error"
-  }
+pipeline {
+    agent any
+    environment {
+        PYTHON_PATH = 'C:\\Users\\91844\\AppData\\Local\\Programs\\Python\\Python312;C:\\Users\\91844\\AppData\\Local\\Programs\\Python\\Python312\\Scripts'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                bat '''
+                set PATH=%PYTHON_PATH%;%PATH%
+                pip install -r requirements.txt
+                '''
+            }
+        }
+        stage('SonarAnalysis') {
+            environment {
+                SONAR_TOKEN = credentials('Sonar')
+            }
+            steps {
+                bat '''
+                set PATH=%PYTHON_PATH%;%PATH%^
+               sonar-scanner ^
+                  -Dsonar.projectKey=pipe ^
+                  -Dsonar.projectname=pipe ^
+                  -Dsonar.sources=. ^
+                  -Dsonar.host.url=http://localhost:9000 ^
+                  -Dsonar.token=%SONAR_TOKEN%
+                '''
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Everything went well'
+        }
+        failure {
+            echo 'Failed'
+        }
+    }
 }
