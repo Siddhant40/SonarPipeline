@@ -22,16 +22,22 @@ pipeline {
                 SONAR_TOKEN = credentials('SonarQube')
             }
             steps {
+                // Debug environment variables and print current directory
+                echo 'Debugging Environment Variables'
+                bat 'set'
+                echo 'Current Working Directory:'
+                bat 'echo %cd%'
+                
+                // Explicitly set the full path to sonar-scanner
                 bat '''
-                set PATH=%PYTHON_PATH%;%PATH%^
-               sonar-scanner ^
+                set PATH=%PYTHON_PATH%;%PATH%
+                "C:\Users\91844\Downloads\sonar-scanner-cli-6.2.1.4610-windows-x64\sonar-scanner-6.2.1.4610-windows-x64\bin" ^
                   -Dsonar.projectKey=pipe ^
                   -Dsonar.projectname=pipe ^
                   -Dsonar.sources=. ^
                   -Dsonar.host.url=http://localhost:9000 ^
-                  -Dsonar.token=%SONAR_TOKEN%^
+                  -Dsonar.token=%SONAR_TOKEN% ^
                   -Dsonar.verbose=true
-
                 '''
             }
         }
