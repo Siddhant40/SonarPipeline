@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         PYTHON_PATH = 'C:\\Users\\91844\\AppData\\Local\\Programs\\Python\\Python312;C:\\Users\\91844\\AppData\\Local\\Programs\\Python\\Python312\\Scripts'
-        SONAR_SCANNER_PATH = 'C:\\Users\\91844\\Downloads\\sonar-scanner-cli-6.2.1.4610-windows-x64\\sonar-scanner-6.2.1.4610-windows-x64\\bin\\sonar-scanner.bat'  // Add this line
+       
     }
     stages {
         stage('Checkout') {
@@ -32,7 +32,7 @@ pipeline {
                 // Use the full path for sonar-scanner.bat
                 bat '''
                 set PATH=%PYTHON_PATH%;%PATH%
-                "%SONAR_SCANNER_PATH%" ^
+             
                   -Dsonar.projectKey=pipe ^
                   -Dsonar.projectname=pipe ^
                   -Dsonar.sources=. ^
